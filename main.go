@@ -6,6 +6,7 @@ import (
 
 func main() {
   baseUrl := "https://khbartar.blog.ir"
+  fmt.Println(baseUrl)
   var urls []string
   c := colly.NewCollector(
     colly.Async(true),
@@ -13,7 +14,12 @@ func main() {
   c.AllowedDomains = []string{"khbartar.blog.ir"}
   c.Limit(&colly.LimitRule{Parallelism: 3})
   c.OnHTML("a[href]", func(e *colly.HTMLElement) {
-    url := baseUrl + e.Attr("href")
+    
+    url := e.Attr("href")
+    if string(url[0]) != "/" {
+      return
+      }
+    url = baseUrl + url
     urls = append(urls, url)
     fmt.Println(url)
     e.Request.Visit(baseUrl + url)
