@@ -17,7 +17,7 @@ func main() {
   c.OnHTML("a[href]", func(e *colly.HTMLElement) {
     
     url := e.Attr("href")
-    if !(strings.HasPrefix(url, "/") && !strings.HasPrefis(url, "//")) {
+    if !(strings.HasPrefix(url, "/") && !strings.HasPrefix(url, "//")) {
       return
       }
     url = baseUrl + url
