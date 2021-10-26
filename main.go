@@ -16,7 +16,7 @@ func main() {
   c.OnHTML("a[href]", func(e *colly.HTMLElement) {
     
     url := e.Attr("href")
-    if string(url[0]) != "/" && string(url[1]) == "/" {
+    if string(url[0]) != "/" || string(url[1]) == "/" {
       return
       }
     url = baseUrl + url
