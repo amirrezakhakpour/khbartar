@@ -2,6 +2,7 @@ package main
 import (
   "github.com/gocolly/colly"
   "fmt"
+  "strings"
   )
 
 func main() {
@@ -16,7 +17,7 @@ func main() {
   c.OnHTML("a[href]", func(e *colly.HTMLElement) {
     
     url := e.Attr("href")
-    if string(url[0]) != "/" || string(url[1]) == "/" {
+    if !(strings.HasPrefix(url, "/") && !strings.HasPrefis(url, "//")) {
       return
       }
     url = baseUrl + url
