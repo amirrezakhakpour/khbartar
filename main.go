@@ -25,5 +25,6 @@ func main() {
     e.Request.Visit(baseUrl + url)
 })
   c.Visit("https://khbartar.blog.ir")
+  c.Wait()
   fmt.Println(len(urls))
   }
